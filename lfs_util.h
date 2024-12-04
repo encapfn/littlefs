@@ -60,6 +60,8 @@ extern "C"
 #endif
 #endif
 
+#define LFS_NO_DEBUG
+
 #ifndef LFS_DEBUG
 #ifndef LFS_NO_DEBUG
 #define LFS_DEBUG_(fmt, ...) \
@@ -70,6 +72,8 @@ extern "C"
 #endif
 #endif
 
+#define LFS_NO_WARN
+
 #ifndef LFS_WARN
 #ifndef LFS_NO_WARN
 #define LFS_WARN_(fmt, ...) \
@@ -79,6 +83,8 @@ extern "C"
 #define LFS_WARN(...)
 #endif
 #endif
+
+#define LFS_NO_ERROR
 
 #ifndef LFS_ERROR
 #ifndef LFS_NO_ERROR

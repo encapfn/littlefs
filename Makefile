@@ -1,5 +1,5 @@
 # overrideable build dir, default is in-place
-BUILDDIR ?= .
+BUILDDIR ?= build-riscv32
 # overridable target/src/tools/flags/etc
 ifneq ($(wildcard test.c main.c),)
 TARGET ?= $(BUILDDIR)/lfs
@@ -8,15 +8,15 @@ TARGET ?= $(BUILDDIR)/liblfs.a
 endif
 
 
-CC       ?= gcc
-AR       ?= ar
-SIZE     ?= size
-CTAGS    ?= ctags
-NM       ?= nm
-OBJDUMP  ?= objdump
-VALGRIND ?= valgrind
-GDB		 ?= gdb
-PERF	 ?= perf
+CC       :=riscv32-none-elf-gcc
+AR       :=riscv32-none-elf-ar
+SIZE     :=riscv32-none-elf-size
+CTAGS    :=ctags
+NM       :=riscv32-none-elf-nm
+OBJDUMP  :=riscv32-none-elf-objdump
+VALGRIND :=valgrind
+GDB		 :=gdb
+PERF	 :=perf
 
 SRC  ?= $(filter-out $(wildcard *.t.* *.b.*),$(wildcard *.c))
 OBJ  := $(SRC:%.c=$(BUILDDIR)/%.o)
@@ -65,6 +65,7 @@ CFLAGS += -I.
 CFLAGS += -std=c99 -Wall -Wextra -pedantic
 CFLAGS += -Wmissing-prototypes
 CFLAGS += -ftrack-macro-expansion=0
+CFLAGS += -mabi=ilp32
 ifdef DEBUG
 CFLAGS += -O0
 else

@@ -15,6 +15,7 @@ extern "C"
 {
 #endif
 
+#define LFS_NO_MALLOC
 
 /// Version info ///
 
